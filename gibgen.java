@@ -26,18 +26,45 @@ public class gibgen{
             //}
             //catch(IOException e){System.err.print(e+"");}
         }
-        
+        temp = shuff(temp);
         System.out.println(temp);
     }
     
     public static String shuff(String string){
         String[] separateWords = string.split(" ");
+        
         String temp = null;
         
         Random random = new Random();
         for (int i = 0; i < separateWords.length; i++){
-            System.out.println(separateWords[i]);
+            int max;
+            
+            String tempI = separateWords[i];
+            
+            char lastCharacter = tempI.charAt(tempI.length() - 1);
+            
+            if (lastCharacter > 64 && lastCharacter < 123)
+                max = tempI.length() - 2;
+            else max = tempI.length() - 3;
+            
+            char[] scrambledWord = tempI.toCharArray();
+            
+            if (max > 1){
+                for (int j = 0; j < max; j++){
+                    int firstLetter = random.nextInt(max) + 1;
+                    int secondLetter = random.nextInt(max) + 1;
+                    
+                    if (firstLetter != secondLetter){
+                        char tmp = scrambledWord[firstLetter];
+                        scrambledWord[firstLetter] = scrambledWord[secondLetter];
+                        scrambledWord[secondLetter] = tmp;
+                    }
+                }
+                temp += String.valueOf(scrambledWord) + " ";
+            }
+            else
+                temp += tempI + " ";
         }
-        return "finish";
+        return temp;
     }
  }
