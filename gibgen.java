@@ -6,11 +6,12 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Random;
+import java.io.IOException;
 
 public class gibgen{
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String temp = "";
+        String temp = null;
         
         if (args.length == 0){
             System.out.println("Error: you must enter input");
@@ -23,7 +24,7 @@ public class gibgen{
 		//here is where our shuffle method is called to our string argument
         temp = shuff(temp);
 
-        System.out.println("\n"+temp);
+        System.out.println(temp);
     }
     
     public static String shuff(String string){
@@ -46,8 +47,8 @@ public class gibgen{
             // instead of casting and converting we just treat them according to this value. 65 = A, 90 = Z
             //this sets the bounds for the area of what needs to be scrambled
             if (lastCharacter > 64 && lastCharacter < 91)
-                max = word.length() - 2;
-            else max = word.length() - 3;
+                max = word.length() - 1;
+            else max = word.length() - 2;
             
             char[] scrambledWord = word.toCharArray();
             
