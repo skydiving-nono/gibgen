@@ -20,7 +20,9 @@ public class gibgen{
             temp = args[0];
         }
         
+		//here is where our shuffle method is called to our string argument
         temp = shuff(temp);
+
         System.out.println("\n"+temp);
     }
     
