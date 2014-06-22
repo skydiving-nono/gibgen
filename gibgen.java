@@ -5,50 +5,53 @@
  */
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.IOException;
 import java.util.Random;
 
 public class gibgen{
     public static void main(String[] args){
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String temp = null; 
-        
-        //for (String s: args) System.out.println(s);
-        //System.exit(0);
+        String temp = "";
         
         if (args.length == 0){
             System.out.println("Error: you must enter input");
         }
         
         else{
-            //try{
-                temp = args[0];
-            //}
-            //catch(IOException e){System.err.print(e+"");}
+            temp = args[0];
         }
+        
         temp = shuff(temp);
-        System.out.println(temp);
+        System.out.println("\n"+temp);
     }
     
     public static String shuff(String string){
+        //take the input string and separate it by word
         String[] separateWords = string.split(" ");
         
-        String temp = null;
+        String temp = "";
         
+        //random value to be used when we scramble the words, to get truly random behavior
         Random random = new Random();
+        
         for (int i = 0; i < separateWords.length; i++){
             int max;
             
-            String tempI = separateWords[i];
+            String word = separateWords[i];
             
-            char lastCharacter = tempI.charAt(tempI.length() - 1);
+            char lastCharacter = word.charAt(word.length() - 1);
             
-            if (lastCharacter > 64 && lastCharacter < 123)
-                max = tempI.length() - 2;
-            else max = tempI.length() - 3;
+            //here, we are treating characters according to their respective integer value
+            // instead of casting and converting we just treat them according to this value. 65 = A, 90 = Z
+            //this sets the bounds for the area of what needs to be scrambled
+            if (lastCharacter > 64 && lastCharacter < 91)
+                max = word.length() - 2;
+            else max = word.length() - 3;
             
-            char[] scrambledWord = tempI.toCharArray();
+            char[] scrambledWord = word.toCharArray();
             
+            //algorithm here is if the word is long enough we swap characters one at a time randomly inside of our
+            // shuffling bounds. So if we have a word "word" we have our characters in play 'o' and 'r' and should our random
+            // generator so happen to produce alternate results, these letters are swapped manually, producing word -> wrod
             if (max > 1){
                 for (int j = 0; j < max; j++){
                     int firstLetter = random.nextInt(max) + 1;
@@ -63,7 +66,7 @@ public class gibgen{
                 temp += String.valueOf(scrambledWord) + " ";
             }
             else
-                temp += tempI + " ";
+                temp += word + " ";
         }
         return temp;
     }
