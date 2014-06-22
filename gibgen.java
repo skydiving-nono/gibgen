@@ -11,20 +11,29 @@ import java.io.IOException;
 public class gibgen{
     public static void main(String[] args) throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String temp = null;
+        String temp;
         
-        if (args.length == 0){
-            System.out.println("Error: you must enter input");
+        //I am marking the information in the stream so I can rewind in the case of the next if statement
+        reader.mark(1);
+        
+        //if program is fed "string" it will scramble entire argument as long as it is in
+        // quotation marks so that it is treaded as one argument
+        if (args.length == 1)
+            System.out.println(shuff(args[0]));
+        
+        //If we 'cat' a textfile as an argument to the program for instance, we will scramble the textfile given
+        // as an argument
+        else if ((reader.readLine()) != null){
+            reader.reset();
+            if (reader.readLine().length() < 1){
+                System.out.println("Error: you must enter a valid argument");
+            }
+            else {
+                reader.reset();
+                while ((temp = reader.readLine()) != null)
+                System.out.println(shuff(temp));
+            }
         }
-        
-        else{
-            temp = args[0];
-        }
-        
-		//here is where our shuffle method is called to our string argument
-        temp = shuff(temp);
-
-        System.out.println(temp);
     }
     
     public static String shuff(String string){

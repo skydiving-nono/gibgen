@@ -61,23 +61,26 @@ Quick Start
 	* compile program by calling 'javac gibgen.java' inside the directory of program from the command line
 	* program should compile without error
 	* after program has been compiled, run command 'java gibgen "your text here"'
-	* replace "your text here" with the text you want scrambled; be sure to use quotation marks!
+	* replace "your text here" with the text you want scrambled; be sure to use quotation marks! Otherwise it will only scramble the first word!
 	
 * Java is the programming language used for this application.
-* 
-* To call a text file as an argument into the program: 
+
+* To run the program with the output of a textfile
+ 	* compile program by calling 'javac gibgen.java' inside the directory of program from the command line
+	* program should compile without error
+	* Call 'cat mystringfile.txt | java gibgen' and it will output the contents of the text file with the gibberish transformation applied
 
 
 Coding Questions
 ----------------
 
-Question 1: "How did you approach the problem?" (500 words or less)
+** Question 1: "How did you approach the problem?" (500 words or less) **
 
 To handle this problem I followed a similar method architects use when remodeling a building. When an architect remodels a building, he/she takes a plan of action to what he/she wants to do to the building, then breaks the building down and then reconstructs it according to the designed plan. The difference here is the building is never demolished, its main aspects/backbones are left in tact.To handle the jumbling of something like the words of a paragraph can follow the same path as the remodeling of a building. My first plan of action was to plan out how I wanted to handle jumbling the letters of many words, planning to plan. Before setting off on a coding frenzy, I sat down and wrote, on paper, the steps I thought would be best and most efficient for handling this problem. The approach I decided would be to take an entire paragraph, break that down into individual words, break those words down into an array of individual characters, then work my way back up reconstructing my paragraph (the building) with my new jumbled words (the renovations).Once my plans were tangible (out of my head and onto paper) I researched which tools I may need for this problem. Would I need anything for this program was not familiar with? File IO, Array manipulation, etc., do I know enough about these to write this program, if not, learn about them so handling this problem could be more efficient when the time came to write code.Finally the time came to write code. The program’s construction is as follows:
 *	read input – take the text from the command line/file and feed that information into my program* manipulate input – once the input has been inserted into program, have a method to handle most of the work* return manipulated input to the command lineThe tool used by the program is below, allowing the program to be an index while the verbose description is in the corresponding method. The actual jumbling of the paragraph takes an entire paragraph, separating by each word and randomly jumbling the insides of individual words.Finally, I tested the program. Testing is where most of the work came from. Through testing I was able to come up with ideas and issues that I had not thought of in the first iteration of the program. The testing was fruitful and allowed me to finish a fully functional program that didn’t break at points it would break at before.
 
 
-Question 2: "What was the most difficult aspect of the solution?" (500 words or less)
+** Question 2: "What was the most difficult aspect of the solution?" (500 words or less) **
 
 The most difficult aspect of the solution was the handling of the many little problems that would arise due to trying to stay in bounds of stipulations given. 
 
